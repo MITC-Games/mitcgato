@@ -1,0 +1,25 @@
+{
+  "name": "mitcgato",
+  "main": "main.js",
+  "productName": "mitcgato",
+  "description": "mitcgato",
+  "author": "D8H",
+  "version": "1.0.0",
+  "dependencies": {
+    
+  },
+  "scripts": {
+    "start": "electron main.js",
+    "build": "electron-builder"
+  },
+  "devDependencies": {
+    "electron": "8.2.5",
+    "electron-builder": "22.9.1"
+  },
+  "build": {
+    "appId": "com.example.platforms.painter",
+    "directories": {
+      "buildResources": "buildResources"
+    }
+  }
+}
