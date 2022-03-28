@@ -6,3 +6,5 @@ esta es la aplicación del mitc gato que probablemente lo podrás encontrar en m
   
 usa `cordova platform add android` y después `cordova build android`  
 revisa si tienes instalado apache cordova en tu pc.
+
+ahora, para instalarlo, te las apañas tú.
