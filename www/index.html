@@ -5,9 +5,49 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elige capítulos</title>
+    <style>
+        path {
+          transform-origin: 50% 0%;
+        }
+        .background--custom {
+          background-color: #FFFFFF;
+          position: absolute;
+          width: 100vw;
+          height: 100vh;
+          z-index: -1;
+          top: 0;
+          left: 0;
+        }
+        @keyframes path0 {
+          0% {
+            transform: rotate(10deg);
+          }
+          100% {
+            transform: rotate(-10deg);
+          }
+        }
+        @keyframes path1 {
+          0% {
+            transform: rotate(20deg);
+          }
+          100% {
+            transform: rotate(-20deg);
+          }
+        }
+        @keyframes path2 {
+          0% {
+            transform: rotate(60deg);
+          }
+          100% {
+            transform: rotate(-60deg);
+          }
+        }
+      </style>
 </head>
 <body>
-    <script async src="https://arc.io/widget.min.js#x31kzf4o"></script>
+    <svg class="background--custom" id="demo" viewBox="0 0 100 100" preserveAspectRatio="none">
+        <path fill="#66bebb" fill-opacity="0.1" d="M-100 -100L200 -100L200 50L-100 50Z" style="animation: path0 4.761904761904762s linear infinite alternate;" /><path fill="#85066e" fill-opacity="0.1" d="M-100 -100L200 -100L200 80L-100 80Z" style="animation: path1 14.285714285714286s linear infinite alternate;" /><path fill="#8ba6ff" fill-opacity="1" d="M-100 -100L200 -100L200 90L-100 90Z" style="animation: path2 3.8167938931297707s linear infinite alternate;" />
+      </svg>
     <h1 style="text-align: center;">Elige capítulos</h1>
     <h4 style="text-align: center;"><a href="capitulo1/index.html">Capítulo 1</a></h4>
     <h4 style="text-align: center;"><a href="capitulo2/index.html">Capítulo 2</a></h4>

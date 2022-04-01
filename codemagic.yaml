@@ -1,5 +1,5 @@
 workflows:
-  my-workflow:
+  andorid:
     scripts:
       - name: Install dependencies
         script: npm ci
