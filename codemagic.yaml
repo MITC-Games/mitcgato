@@ -1,4 +1,19 @@
 workflows:
+triggering:
+  events:                       # List the events that trigger builds
+    - push
+    - pull_request
+  branch_patterns:              # Include or exclude watched branches
+    - pattern: 'app'
+      include: true
+      source: true
+    - pattern: excluded-target
+      include: false
+      source: false
+    - pattern: included-source
+      include: true
+      source: true
+  cancel_previous_builds: false  # Set to `true` to automatically cancel outdated webhook build
   andorid:
     scripts:
       - name: Install dependencies
