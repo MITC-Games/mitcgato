@@ -22,3 +22,6 @@ workflows:
           cordova build android --no-interactive
     artifacts:
       - /Users/builder/clone/platforms/android/app/build/outputs/apk/debug/app-debug.apk
+    environment:
+      groups:
+        - discord
