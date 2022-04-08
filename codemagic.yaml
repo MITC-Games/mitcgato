@@ -80,3 +80,11 @@ workflows:
           cordova build ios --release --device --buildConfig='build.json'           
     artifacts:
       - /Users/builder/clone/platforms/ios/build/device/*.ipa
+    triggering:
+      events:
+        - push
+      branch_patterns: 
+        - pattern: app
+        - pattern: develop
+          include: false
+      cancel_previous_builds: true
