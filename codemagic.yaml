@@ -37,49 +37,31 @@ workflows:
     scripts:
       - name: Install dependencies
         script: |
-          npm install
-          npm ci
-          cvm install 9.0.0
-          cvm use 9.0.0          
-      - name: Setup iOS
-        script: |
-          cordova platform remove ios --nosave
-          cordova platform add ios --confirm --no-interactive --noresources --save            
-      - name: Set up keychain to be used for code signing using Codemagic CLI 'keychain' command
-        script: |
-                    keychain initialize
-      - name: Fetch signing files
-        script: |
-                    app-store-connect fetch-signing-files $BUNDLE_ID --type IOS_APP_STORE --create
-      - name: Add certificates to keychain
-        script: |
-                    keychain add-certificates         
-      - name: Set up code signing settings on Xcode project
-        script: |
-                    xcode-project use-profiles
-      - name: Build iOS
-        script: |
-          package_type=$(defaults read ~/export_options.plist method)
-          identity=$(defaults read ~/export_options.plist signingCertificate)
-          team=$(defaults read ~/export_options.plist teamID)
-          profile=$(find '/Users/builder/Library/MobileDevice/Provisioning Profiles' -name "*.mobileprovision")
-          profile_uuid=$(grep UUID -A1 -a "$profile" | grep -io "[-A-F0-9]\{36\}")
+          set -e # exit on first failed command
 
-          cat <<EOF > build.json
-              {
-                "ios": {
-                  "release": {
-                    "codeSignIdentity": "$identity",
-                    "developmentTeam": "$team",
-                    "packageType": "$package_type",
-                    "provisioningProfile": "$profile_uuid"
-                  }
-                }
-              }
-          EOF
-          cordova build ios --release --device --buildConfig='build.json'           
+          npm ci
+      - name: Switch to a specific version of Cordova
+        script: |
+          set -e # exit on first failed command
+
+          cvm install 9.0.0
+          cvm use 9.0.0
+      - name: Add iOS platform
+        script: |
+          set -e # exit on first failed command
+
+          cordova platform remove ios --nosave
+          cordova platform add ios --confirm --no-interactive --noresources
+      - name: Build iOS release
+        script: |
+          set -e # exit on first failed command
+
+          cordova build ios --no-interactive
     artifacts:
-      - /Users/builder/clone/platforms/ios/build/device/*.ipa
+      - /Users/builder/clone/platforms/ios/build/device/MyApp.ipa
+    environment:
+      groups:
+        - discord
     triggering:
       events:
         - push
